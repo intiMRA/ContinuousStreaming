@@ -9,17 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel = ViewModel()
-    @State var name: String = ""
     var body: some View {
         VStack(spacing: 10) {
             ZStack {
                 RoundedRectangle(cornerRadius: 5)
                     .foregroundColor(.textFieldBackground)
                                 
-                TextField("", text: $name)
+                TextField("", text: $viewModel.name)
                     .foregroundColor(.white)
                     .padding(.leading, 10)
-                if name.isEmpty {
+                if viewModel.name.isEmpty {
                     Text("Enter a name")
                     .foregroundColor(.white.opacity(0.7))
                 }
@@ -27,7 +26,7 @@ struct ContentView: View {
             .frame(height: 50, alignment: .center)
             
             Button("Submit Name") {
-                self.viewModel.name = self.name
+                self.viewModel.submit = ()
             }
             .foregroundColor(.white)
             .padding()
